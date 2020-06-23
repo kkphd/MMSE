@@ -1,0 +1,25 @@
+/.idea
+/venv
+/__pycache__
+/.ipynb_checkpoints
+2020-06-01-KK-MMSE-Deliverable-Old.ipynb
+CDR Scoring Table.pdf
+Karas2008Scan.jpg
+Jack_2013_Figure.png
+all_AUC.png
+Levene.pdf
+mmse.xlsx
+mmse2.xlsx
+mmse_wpercentile.xlsx
+oasis_cross-sectional.csv
+oasis_womri.csv
+qq_problem.py
+references.py
+tree.pdf
+tree1.dot
+tree1.svg
+tree1.png
+tree2.dot
+tree2.svg
+tree2.png
+oasis.csv
