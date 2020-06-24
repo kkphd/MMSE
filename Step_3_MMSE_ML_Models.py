@@ -2,7 +2,7 @@
 # www.github.com/kkphd/mmse
 
 
-from mmse_eda_2 import v1_impaired, v1_intact
+from Step_2_MMSE_EDA import v1_impaired, v1_intact
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns

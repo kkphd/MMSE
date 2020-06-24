@@ -2,7 +2,7 @@
 # www.github.com/kkphd/mmse
 
 
-import mmse_cleaning_1
+import Step_1_MMSE_Data_Cleaning
 import pandas as pd
 import numpy as np
 from scipy import stats
@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pprint
 
-analysis_results = mmse_cleaning_1.run_analysis()
+analysis_results = Step_1_MMSE_Data_Cleaning.run_analysis()
 
 
 # Perform exploratory data analysis by first filtering for visit 1 cases ("v1") and sub-setting the groups.
