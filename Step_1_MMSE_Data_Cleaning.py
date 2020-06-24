@@ -24,7 +24,7 @@ import scipy
 
 
 def import_analysis_df():
-    analysis_df = pd.read_csv('oasis.csv')
+    analysis_df = pd.read_csv('Dataset/oasis.csv')
 
     # Brief overview of the data frame
     print(analysis_df.head(3))
@@ -161,7 +161,7 @@ def t_to_percentile(t):
 
 
 def assign_label(mmse_percentile):
-    df = pd.read_csv('oasis.csv')
+    df = pd.read_csv('Dataset/oasis.csv')
     if df['MMSE'].skew() < 0:
         return skewed_percentile_to_label(mmse_percentile)
     else:
