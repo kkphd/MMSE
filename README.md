@@ -1,4 +1,4 @@
-###The Jupyter Notebook for this project is located here [Link to MMSE Deliverable by kkphd](https://github.com/kkphd/MMSE/blob/master/Predicting-Cognitive-Impairment-KK-2020.ipynb)
+**The Jupyter Notebook for this project is located here:** [Link to MMSE Deliverable by kkphd](https://github.com/kkphd/MMSE/blob/master/Predicting-Cognitive-Impairment-KK-2020.ipynb)
 
 
 ## Predicting Cognitive Impairment
