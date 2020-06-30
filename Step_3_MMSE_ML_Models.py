@@ -230,3 +230,11 @@ result_to_dict(result4, result_dict)
 
 summary_result = pd.DataFrame.from_dict(result_dict)
 summary_result = summary_result.set_index('Model #')
+
+
+# Model 2 appears to be the best model out of the four. I will rename the trained model
+# to something more simple.
+model = logreg2_model
+
+# Save the model to the disk so it can be used for the web app.
+pickle.dump(model, open('model.pkl', 'wb'))
