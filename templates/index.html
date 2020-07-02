@@ -30,92 +30,97 @@
 </head>
 
 <body>
-  <div class="container">
-    <div class="card bg-light text-center mt-5">
-      <div class="bg-info card-header text-white"><h2>Predict Alzheimer's-Related Cognitive Impairment using Machine Learning</h2></div>
-      <div class="card-body">
-        <form method="post" action="{{ url_for('predict')}}">
-      <!--User to Input Feature Characteristics-->
-      <div class="container">
-        <div class="row">
-          <div class="col-sm">
-            <label for="MF_01">Sex:</label>
+<div class="container">
+  <div class="card bg-light text-center mt-5">
+    <div class="bg-info card-header text-white"><h2>Predict Alzheimer's-Related Cognitive Impairment using Machine
+      Learning</h2></div>
+    <div class="card-body">
+      <form method="post" action="{{ url_for('predict')}}">
+        <!--User to Input Feature Characteristics-->
+        <div class="container">
+          <div class="row">
+            <div class="col-sm">
+              <label for="MF_01">Sex:</label>
+            </div>
+            <div class="col-sm">
+              <select name="MF_01" id="MF_01" class="form-control">
+                <option value=""></option>
+                <option value="0">Male</option>
+                <option value="1">Female</option>
+              </select>
+            </div>
           </div>
-          <div class="col-sm">
-            <select name="MF_01" id="MF_01" class="form-control">
-              <option value=""></option>
-              <option value="0">Male</option>
-              <option value="1">Female</option>
-            </select>
+          <div class="row mt-2">
+            <div class="col-sm">
+              <label for="CDR">Global CDR Score:</label>
+            </div>
+            <div class="col-sm">
+              <select name="CDR" id="CDR" class="form-control">
+                <option value=""></option>
+                <option value="0">0 (Normal)</option>
+                <option value="0.5">0.5 (Questionable)</option>
+                <option value="1">1 (Mild Impairment)</option>
+                <option value="2">2 (Moderate Impairment)</option>
+                <option value="3">3 (Severe Impairment)</option>
+              </select>
+            </div>
           </div>
+          <div class="row mt-2">
+            <div class="col-sm">
+              <label for="eTIV">Estimated Total Intracranial Volume (eTIV) (cm<sup>3</sup>):</label>
+            </div>
+            <div class="col-sm">
+              <input type="number" id="eTIV" name="eTIV" class="form-control" step=".001"/>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-sm">
+              <label for="nWBV">Normalized Whole Brain Volume (nWBV):</label>
+            </div>
+            <div class="col-sm">
+              <input type="number" id="nWBV" name="mWBV" class="form-control" step=".001"/>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-sm">
+            </div>
+          </div>
+          <input type="submit" value="Predict" class="btn btn-primary mt-2"/>
         </div>
-        <div class="row mt-2">
-          <div class="col-sm">
-            <label for="CDR">Global CDR Score:</label>
-          </div>
-          <div class="col-sm">
-            <select name="CDR" id="CDR" class="form-control">
-              <option value=""></option>
-              <option value="0">0 (None)</option>
-              <option value="0.5">0.5 (Questionable)</option>
-              <option value="1">1 (Mild Impairment)</option>
-              <option value="2">2 (Moderate Impairment)</option>
-              <option value="3">3 (Severe Impairment)</option>
-            </select>
-          </div>
-        </div>
-        <div class="row mt-2">
-          <div  class="col-sm">
-            <label  for="eTIV">Estimated Total Intracranial Volume (eTIV) (cm<sup>3</sup>):</label>
-          </div>
-          <div class="col-sm">
-            <input type="number" id="eTIV" name="eTIV" class="form-control" step=".001"/>
-          </div>
-        </div>
-        <div class="row mt-2">
-          <div class="col-sm">
-            <label for="nWBV">Normalized Whole Brain Volume (nWBV):</label>
-          </div>
-          <div class="col-sm">
-            <input type="number" id="nWBV" name="mWBV" class="form-control" step=".001"/>
-          </div>
-        </div>
-        <div class="row mt-2">
-          <div class="col-sm">
-            <label for="ASF">Atlas Scaling Factor (ASF) (unitless):</label>
-          </div>
-          <div class="col-sm">
-            <input type="number" id="ASF" name="ASF" class="form-control" step=".001"/>
-          </div>
-        </div>
-        <input type="submit" value="Predict" class="btn btn-primary mt-2"/>
+      </form>
+      <div class="mt-2">
+        <label>Predicted Cognitive Status:</label>
+        <div class="margin-bot" style="font-weight: bold">{{prediction_text}}</div>
       </div>
-    </form>
-    <div class="mt-2">
-      <label>Predicted Cognitive Status:</label>
-      <div class="margin-bot" style="font-weight: bold">{{prediction_text}}</div>
     </div>
-    </div>
-    </div>
-
-    <p class="text-center mt-5">
-      Questions or comments? Feel free to contact me via <a href="http://www.github.com/kkphd">my Github page.</a>
-    </p>
   </div>
-  <div>
-  </div>
+  <p class="text-center mt-5">
+  <p align="center" style="color:red"><b>Note: This web application serves as a minimal
+    viable product (MVP) to demonstrate the utility of applying machine learning algorithms
+    to healthcare data. Information from this application is <u>NOT VALIDATED</u> and
+    <u>SHOULD NOT</u> be used in a clinical capacity. The developer does not assume any
+    liability for the consequences of using this application. Please see my Github
+    repo ("MMSE") for more information.</b>
+</p>
+  <p align="center">Questions or comments? Feel free to contact me via
+  <a href="http://www.github.com/kkphd">my Github page.</a></p>
+      </div>
+</body>
   <div class="container">
     <span class="mt-3 text-bold"><u>References:</u></span>
-      <div class="mt-2">
-        LaMontagne, P. J., Benzinger, T. L., Morris, J. C., Keefe, S., Hornbeck, R., Xiong, C., ... & Raichle, M. E. (2019).
-        OASIS-3: longitudinal neuroimaging, clinical, and cognitive dataset for normal aging and Alzheimer disease. medRxiv.
-        <a href="https://www.medrxiv.org/content/10.1101/2019.12.13.19014902v1">Link</a>
-      </div>
+    <div class="mt-2">
+      LaMontagne, P. J., Benzinger, T. L., Morris, J. C., Keefe, S., Hornbeck, R., Xiong, C., ... & Raichle, M. E.
+      (2019).
+      OASIS-3: longitudinal neuroimaging, clinical, and cognitive dataset for normal aging and Alzheimer disease.
+      medRxiv.
+      <a href="https://www.medrxiv.org/content/10.1101/2019.12.13.19014902v1">Link</a>
       <div class="mt-2">
         Marcus, D. S., Fotenos, A. F., Csernansky, J. G., Morris, J. C., & Buckner, R. L. (2010). Open access series of
-        imaging studies: longitudinal MRI data in nondemented and demented older adults. Journal of Cognitive Neuroscience,
+        imaging studies: longitudinal MRI data in nondemented and demented older adults. Journal of Cognitive
+        Neuroscience,
         22(12), 2677-2684. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2895005/">Link</a>
       </div>
-    </div>
 </body>
+    <div>
+    </div>
 </html>

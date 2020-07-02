@@ -1,38 +1,35 @@
 from flask import Flask, render_template, request, jsonify
 import pickle
-import json
 import numpy as np
-from sklearn.linear_model import LogisticRegression
-from sklearn.utils import resample
-from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import RobustScaler
 
 
-app = Flask(__name__)
+application = Flask(__name__)
 
 
 # Load the model.
-model = pickle.load(open('model.pkl', 'rb'))
+model = pickle.load(open('desired_model.pkl', 'rb'))
 
-
-# Recall that features are listed in the following order: MF_01, CDR, eTIV, nWBV, ASF
-@app.route('/')
+# Recall that features are listed in the following order: [MF_01, CDR, eTIV, nWBV]
+@application.route('/')
 def home():
     return render_template('index.html')
 
 
-@app.route('/predict', methods=['POST'])
+@application.route('/predict', methods=['POST'])
 def predict():
     features = [float(x) for x in request.form.values()]
     print(f'Features going in: {features}')
     features_array = [np.array(features)]
-    prediction = model.predict(features_array)
+    scaled_features_array = RobustScaler().fit_transform(features_array)
+    prediction = model.predict(scaled_features_array)
+    print(prediction)
+    probability = print(model.predict_proba(scaled_features_array))
+    print(probability)
 
-    output = prediction[0]
-
-    if output == 0:
+    if prediction == 0:
         prediction_text = "Intact"
-    elif output == 1:
+    elif prediction == 1:
         prediction_text = "Impaired"
     else:
         prediction_text = ""
@@ -43,4 +40,4 @@ def predict():
 
 
 if __name__ == '__main__':
-    app.run()
+    application.run()

@@ -14,6 +14,7 @@ from sklearn.metrics import classification_report, confusion_matrix, roc_curve, 
 from sklearn.tree import DecisionTreeClassifier, export_graphviz
 import pydotplus
 from collections import defaultdict
+import pickle
 
 
 # Predict dementia status using supervised learning classification. To enhance the Impaired subjects'
@@ -49,11 +50,11 @@ plot_mmse_upsampled()
 
 # Binary logistic regression will be used to predict MMSE-derived cognitive status.
 def logreg_model1():
-    X = upsampled[['MF_01', 'eTIV', 'nWBV', 'ASF']]
+    X = upsampled[['MF_01', 'eTIV', 'nWBV']]
     y = upsampled['MMSE_Group_Status']
 
-    # Split the data into training and testing data sets. By convention, 75% will be used for training and
-    # the remaining 25% will be used for testing. Data are shuffled by default.
+    # Split the data into training and testing data sets. Thirty percent will be used for testing and 70% will be
+    # used for training.
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
 
     # Preprocess the data. I used the Robust Scaling method since outliers skewed the feature variables.
@@ -63,7 +64,7 @@ def logreg_model1():
     X_test_scaled = scaler.fit_transform(X_test)
 
     # Fit the model to the data.
-    logreg = LogisticRegression(solver='lbfgs', max_iter=1000)
+    logreg = LogisticRegression(solver='lbfgs', max_iter=10000)
     logreg_model = logreg.fit(X_train_scaled, y_train)
     logreg_model_r2 = logreg_model.score(X_test_scaled, y_test)
     y_pred = logreg_model.predict(X_test_scaled)
@@ -93,7 +94,7 @@ logreg_model_r2, conf_matrix, class_report, auc_logreg, result1, precision1 = lo
 
 # Assess if the model improves after incorporating a test that includes participants' functional status (CDR).
 def logreg_model2():
-    X = upsampled[['MF_01', 'CDR', 'eTIV', 'nWBV', 'ASF']]
+    X = upsampled[['MF_01', 'CDR', 'eTIV', 'nWBV']]
     y = upsampled['MMSE_Group_Status']
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
@@ -103,7 +104,7 @@ def logreg_model2():
     X_train_scaled = scaler.fit_transform(X_train)
     X_test_scaled = scaler.fit_transform(X_test)
 
-    logreg2 = LogisticRegression(solver='lbfgs', max_iter=1000)
+    logreg2 = LogisticRegression(solver='lbfgs', max_iter=10000)
     logreg2_model = logreg2.fit(X_train_scaled, y_train)
     logreg2_model_r2 = logreg2_model.score(X_test_scaled, y_test)
     y2_pred = logreg2_model.predict(X_test_scaled)
@@ -123,9 +124,9 @@ def logreg_model2():
 
     result2 = [2, 'Logistic Regression (with CDR)', logreg2_model_r2, tpr2, 1 - fpr2, auc_logreg2, precision2]
 
-    return logreg2_model_r2, conf_matrix2, class_report2, auc_logreg2, result2, precision2
+    return logreg2_model_r2, conf_matrix2, class_report2, auc_logreg2, result2, precision2, logreg2_model
 
-logreg2_model_r2, conf_matrix2, class_report2, auc_logreg2, result2, precision2 = logreg_model2()
+logreg2_model_r2, conf_matrix2, class_report2, auc_logreg2, result2, precision2, logreg2_model = logreg_model2()
 
 
 # Using a decision tree may provide additional insights about classification accuracy without and with CDR.
@@ -232,9 +233,5 @@ summary_result = pd.DataFrame.from_dict(result_dict)
 summary_result = summary_result.set_index('Model #')
 
 
-# Model 2 appears to be the best model out of the four. I will rename the trained model
-# to something more simple.
-model = logreg2_model
-
 # Save the model to the disk so it can be used for the web app.
-pickle.dump(model, open('model.pkl', 'wb'))
+pickle.dump(logreg2_model, open('desired_model.pkl', 'wb'))
