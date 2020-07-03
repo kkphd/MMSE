@@ -143,9 +143,9 @@ kurt_all, kurt_intact, kurt_impaired = calc_kurt()
 # The distributions are largely platykurtic.
 
 
-kurt_all_df = pd.DataFrame(kurt_all)
+kurt_all_df = pd.DataFrame(kurt_all, index=[0])
 kurt_intact_df = pd.DataFrame(kurt_intact, index=[0])
-kurt_impaired_df = pd.DataFrame(kurt_impaired, index=[1])
+kurt_impaired_df = pd.DataFrame(kurt_impaired, index=[0])
 
 
 def mmse_figure():

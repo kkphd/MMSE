@@ -14,7 +14,6 @@ from sklearn.metrics import classification_report, confusion_matrix, roc_curve, 
 from sklearn.tree import DecisionTreeClassifier, export_graphviz
 import pydotplus
 from collections import defaultdict
-import pickle
 
 
 # Predict dementia status using supervised learning classification. To enhance the Impaired subjects'
@@ -231,9 +230,3 @@ result_to_dict(result4, result_dict)
 
 summary_result = pd.DataFrame.from_dict(result_dict)
 summary_result = summary_result.set_index('Model #')
-
-
-# Model 2 appears to be the best model, therefore we will save it for the web application.
-scaler = RobustScaler()
-pickle.dump(scaler, open('transformer.pkl', 'wb'))
-pickle.dump(logreg2_model, open('model.pkl', 'wb'))

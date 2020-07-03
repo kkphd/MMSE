@@ -4,11 +4,10 @@ import pickle
 
 
 application = Flask(__name__)
-logreg2_model = pickle.load(open('model.pkl', 'rb'))
 scaler = pickle.load(open('transformer.pkl', 'rb'))
+logreg2_model = pickle.load(open('model.pkl', 'rb'))
 
 
-# Recall that features are listed in the following order: [MF_01, CDR, eTIV, nWBV]
 @application.route('/')
 def home():
     return render_template('index.html')
@@ -44,4 +43,4 @@ def predict():
 
 
 if __name__ == '__main__':
-    application.run(host='0.0.0.0')
+    application.run()
