@@ -1,5 +1,7 @@
 **The Jupyter Notebook for this project is located here:** [Link to MMSE Deliverable by kkphd](https://github.com/kkphd/MMSE/blob/master/Predicting-Cognitive-Impairment-KK-2020.ipynb)
 
+**The Flask web app for this project is located here:** [Link to MMSE Flask App by kkphd](https://bit.ly/3is5MYK)
+
 
 ## Predicting Cognitive Impairment
 
