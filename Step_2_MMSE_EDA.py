@@ -122,6 +122,7 @@ shapiro_all, shapiro_intact, shapiro_impaired = calc_shapiro()
 
 
 shapiro_all_df = pd.DataFrame.from_dict(shapiro_all)
+shapiro_all_df = pd.DataFrame(shapiro_all, index=['Intact', 'Impaired'])
 shapiro_intact_df = pd.DataFrame.from_dict(shapiro_intact)
 shapiro_impaired_df = pd.DataFrame.from_dict(shapiro_impaired)
 
@@ -142,9 +143,9 @@ kurt_all, kurt_intact, kurt_impaired = calc_kurt()
 # The distributions are largely platykurtic.
 
 
-kurt_all_df = pd.DataFrame(kurt_all, index=[0])
+kurt_all_df = pd.DataFrame(kurt_all)
 kurt_intact_df = pd.DataFrame(kurt_intact, index=[0])
-kurt_impaired_df = pd.DataFrame(kurt_impaired, index=[0])
+kurt_impaired_df = pd.DataFrame(kurt_impaired, index=[1])
 
 
 def mmse_figure():
@@ -208,19 +209,13 @@ spearman_all_dt = pd.DataFrame.from_dict(spearman_results)
 def calc_intact_spearman():
     columns = ['MF_01', 'Age', 'Edu', 'MMSE', 'MMSE_T', 'MMSE_Percentile', 'CDR', 'eTIV', 'nWBV']
     spearman_intact_pvalues = {}
-    # loop through each column
     for column in columns:
-        spear_arr = [] # setup an empty array to load up with data that will assign to dictionary
-        for col in columns: # loop through each column again with a different name
-            correlation, p_value = stats.spearmanr(v1_intact[column], v1_intact[col]) # get your values from stat
-            spear_arr.append({col: (correlation, p_value)}) # assign your values to dictionary as needed
-        spearman_intact_pvalues[column] = spear_arr # add the array to the dictionary once we've looped through second loop
-
-        # spearman_pvalues[column] = stats.spearmanr(v1_all[column][0], v1_all[column][1])
-        # spearman_intact_pvalues[column] = stats.spearmanr(v1_intact[column][0], v1_intact[column][1])
-        # spearman_impaired_pvalues[column] = stats.spearmanr(v1_impaired[column][0], v1_impaired[column][1])
+        spear_arr = []
+        for col in columns:
+            correlation, p_value = stats.spearmanr(v1_intact[column], v1_intact[col])
+            spear_arr.append({col: (correlation, p_value)})
+        spearman_intact_pvalues[column] = spear_arr
     return spearman_intact_pvalues
-        #, spearman_intact_pvalues, spearman_impaired_pvalues
 
 spearman_intact_results = calc_intact_spearman()
 
@@ -229,17 +224,12 @@ spearman_intact_results = calc_intact_spearman()
 def calc_impaired_spearman():
     columns = ['MF_01', 'Age', 'Edu', 'MMSE', 'MMSE_T', 'MMSE_Percentile', 'CDR', 'eTIV', 'nWBV']
     spearman_impaired_pvalues = {}
-    # loop through each column
     for column in columns:
-        spear_arr = [] # setup an empty array to load up with data that will assign to dictionary
-        for col in columns: # loop through each column again with a different name
-            correlation, p_value = stats.spearmanr(v1_impaired[column], v1_impaired[col]) # get your values from stat
-            spear_arr.append({col: (correlation, p_value)}) # assign your values to dictionary as needed
-        spearman_impaired_pvalues[column] = spear_arr # add the array to the dictionary once we've looped through second loop
-
-        # spearman_pvalues[column] = stats.spearmanr(v1_all[column][0], v1_all[column][1])
-        # spearman_intact_pvalues[column] = stats.spearmanr(v1_intact[column][0], v1_intact[column][1])
-        # spearman_impaired_pvalues[column] = stats.spearmanr(v1_impaired[column][0], v1_impaired[column][1])
+        spear_arr = []
+        for col in columns:
+            correlation, p_value = stats.spearmanr(v1_impaired[column], v1_impaired[col])
+            spear_arr.append({col: (correlation, p_value)})
+        spearman_impaired_pvalues[column] = spear_arr
     return spearman_impaired_pvalues
         #, spearman_intact_pvalues, spearman_impaired_pvalues
 

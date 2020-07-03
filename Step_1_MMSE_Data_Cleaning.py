@@ -78,6 +78,11 @@ def run_analysis():
 
 
 def cdr_to_stage(score):
+    """
+    Convert the Clinical Dementia Rating scale (CDR) to descriptive terms (O'Bryant et al., 2010).
+    This can be helpful for qualitative purposes.
+
+    """
     if score == 0.0:
         return ('Normal')
     elif score == 0.5:
@@ -93,6 +98,11 @@ def cdr_to_stage(score):
 
 
 def age_num_to_group(age):
+    """
+    A separate data file containing normative values for MMSE is ordered by age groups.
+    This function will convert the interval value of age in the OASIS data set to
+    age groups in order to find and convert the T-score more easily.
+    """
     if 60 <= age <= 64:
         return "60-64"
     elif 65 <= age <= 69:
@@ -108,6 +118,11 @@ def age_num_to_group(age):
 
 
 def edu_to_group(edu):
+    """
+    A separate data file containing normative values for MMSE is also ordered by education.
+    This function will convert the interval value of education in the OASIS data set to age groups
+    in order to find and convert the T-score more easily.
+    """
     if 0 <= edu <= 4:
         return "0-4"
     elif 5 <= edu <= 8:
@@ -126,6 +141,10 @@ def edu_to_group(edu):
 # scores > 1.5 were considered intact.
 
 def new_mmse_group(mmse_t):
+    """
+    If the MMSE T-score is at or below 1.5 standard deviations from the mean, the participant is considered impaired, otherwise
+    they are intact.
+    """
     if mmse_t > 35:
         return "Intact"
     elif mmse_t <= 35:
@@ -133,6 +152,10 @@ def new_mmse_group(mmse_t):
 
 
 def group_coding(dementia_status):
+    """
+    Determines the level of agreement between the OASIS data set's classification of dementia versus the current
+    study's (see function 'new_mmse_group').
+    """
     if dementia_status == 'Nondemented':
         return 0
     elif dementia_status == 'Intact':
@@ -169,6 +192,9 @@ def assign_label(mmse_percentile):
 
 
 def skewed_percentile_to_label(percentile):
+    """
+    Assigns a descriptive term to the MMSE T-score based on its degree of skewness.
+    """
     if percentile > 24:
         return 'WNL'
     elif 9 <= percentile <= 24:
@@ -180,6 +206,9 @@ def skewed_percentile_to_label(percentile):
 
 
 def normal_percentile_to_label(percentile):
+    """
+    Assigns a descriptive term to the MMSE percentile score.
+    """
     if percentile >= 98:
         return 'Exceptionally High'
     elif 91 <= percentile <= 97:

@@ -36,7 +36,7 @@ def predict():
     elif prediction == 1:
         prediction_text = "Impaired"
     else:
-        prediction_text = ""
+        prediction_text = "Error"
 
     predict_sentence = f'{prediction_text}'
 

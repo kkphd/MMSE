@@ -234,5 +234,6 @@ summary_result = summary_result.set_index('Model #')
 
 
 # Model 2 appears to be the best model, therefore we will save it for the web application.
+scaler = RobustScaler()
 pickle.dump(scaler, open('transformer.pkl', 'wb'))
 pickle.dump(logreg2_model, open('model.pkl', 'wb'))
