@@ -12,9 +12,10 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import RobustScaler
 from sklearn.metrics import classification_report, confusion_matrix, roc_curve, auc, precision_score
 from sklearn.tree import DecisionTreeClassifier, export_graphviz
+from sklearn.pipeline import Pipeline
 import pydotplus
 from collections import defaultdict
-import pickle
+from joblib import dump, load
 
 
 # Predict dementia status using supervised learning classification. To enhance the Impaired subjects'
@@ -61,7 +62,7 @@ def logreg_model1():
     scaler = RobustScaler()
     scaler.fit(X_train)
     X_train_scaled = scaler.fit_transform(X_train)
-    X_test_scaled = scaler.fit_transform(X_test)
+    X_test_scaled = scaler.transform(X_test)
 
     # Fit the model to the data.
     logreg = LogisticRegression(solver='lbfgs', max_iter=10000)
@@ -102,7 +103,7 @@ def logreg_model2():
     scaler = RobustScaler()
     scaler.fit(X_train)
     X_train_scaled = scaler.fit_transform(X_train)
-    X_test_scaled = scaler.fit_transform(X_test)
+    X_test_scaled = scaler.transform(X_test)
 
     logreg2 = LogisticRegression(solver='lbfgs', max_iter=10000)
     logreg2_model = logreg2.fit(X_train_scaled, y_train)
@@ -139,7 +140,7 @@ def dectree_model3():
     scaler = RobustScaler()
     scaler.fit(X_train)
     X_train_scaled = scaler.fit_transform(X_train)
-    X_test_scaled = scaler.fit_transform(X_test)
+    X_test_scaled = scaler.transform(X_test)
 
     dt = DecisionTreeClassifier(max_depth=2)
     dt1_model = dt.fit(X_train_scaled, y_train)
@@ -181,7 +182,7 @@ def dectree_model4():
     scaler = RobustScaler()
     scaler.fit(X_train)
     X_train_scaled = scaler.fit_transform(X_train)
-    X_test_scaled = scaler.fit_transform(X_test)
+    X_test_scaled = scaler.transform(X_test)
 
     dt = DecisionTreeClassifier(max_depth=2)
     dt2_model = dt.fit(X_train_scaled, y_train)
@@ -231,7 +232,3 @@ result_to_dict(result4, result_dict)
 
 summary_result = pd.DataFrame.from_dict(result_dict)
 summary_result = summary_result.set_index('Model #')
-
-
-# Save the model to the disk so it can be used for the web app.
-pickle.dump(logreg2_model, open('desired_model.pkl', 'wb'))
