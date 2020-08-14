@@ -12,6 +12,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import RobustScaler
 from sklearn.metrics import classification_report, confusion_matrix, roc_curve, auc, precision_score
 from sklearn.tree import DecisionTreeClassifier, export_graphviz
+from sklearn.model_selection import cross_val_score
 import pydotplus
 from collections import defaultdict
 
@@ -230,3 +231,25 @@ result_to_dict(result4, result_dict)
 
 summary_result = pd.DataFrame.from_dict(result_dict)
 summary_result = summary_result.set_index('Model #')
+
+
+# Since model 2 appears to be the best model out of the four tested, I will validate this method using k-fold
+# cross-validation (k=5, the default value).
+def crossval_logreg_model2():
+    X = upsampled[['MF_01', 'CDR', 'eTIV', 'nWBV']]
+    y = upsampled['MMSE_Group_Status']
+
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
+
+    scaler = RobustScaler()
+    scaler.fit(X_train)
+    X_train_scaled = scaler.fit_transform(X_train)
+    X_test_scaled = scaler.transform(X_test)
+
+    logreg2 = LogisticRegression(solver='lbfgs', max_iter=10000)
+    logreg2_model = logreg2.fit(X_train_scaled, y_train)
+
+    accuracy_values = cross_val_score(logreg2_model, X_train_scaled, y_train)
+    print("Average cross-validation (accuracy) score:", format(accuracy_values.mean()))
+
+crossval_logreg_model2()
