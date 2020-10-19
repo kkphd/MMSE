@@ -31,9 +31,9 @@
 <body>
 <div class="container">
   <div class="card bg-light text-center mt-5">
-    <div class="bg-primary card-header text-white">
+    <div class="bg-dark mb3 card-header text-white">
       <h2 style="text-align: center">
-        Predict Alzheimer's-Related Cognitive Impairment
+        Predict Alzheimer's Disease Associated Cognitive Impairment
       </h2></div>
     <div class="card-body">
       <form method="post" action="{{ url_for('predict')}}">
@@ -88,7 +88,7 @@
             </div>
           </div>
           <br>
-          <input type="submit" value="Predict" class="btn btn-primary mt-2"/>
+          <input type="submit" value="Predict" class="btn btn-warning mt-2"/>
         </div>
       </form>
       <br>
@@ -99,19 +99,20 @@
     </div>
   </div>
   <p class="text-center mt-5">
-  <p align="center" style="color:red"><b>Note: This web application serves as a minimal
-    viable product (MVP) to demonstrate the utility of applying machine learning algorithms
-    to health data. Information from this application is <u>NOT VALIDATED</u> and
-    <u>SHOULD NOT</u> be used in a clinical capacity. The developer does not assume any
-    liability for the consequences of using this application. Please see my Github
-    repo ("MMSE") for more information.</b>
-<br>
-  <br>
-  <br>
-</p>
-  <p align="center">Questions or comments? Feel free to contact me via
-  <a href="http://www.github.com/kkphd">my Github page.</a></p>
-      </div>
+    <div class="alert alert-danger" role="alert" align="center">
+      <b>Note:</b>
+      <br>
+    </br>
+    This web application serves as a minimum viable product (MVP) to demonstrate
+      the utility of applying machine learning algorithms to health data. Information
+      from this application is NOT VALIDATED and SHOULD NOT be used in
+      a clinical capacity. The developer does not assume any liability for the consequences
+      of using this application.
+      <br>
+    </br>
+      <a href="https://github.com/kkphd/MMSE" style="color:#7B1602"><b> 👉 Please see my GitHub repo ("MMSE")
+        for more information.</b><a>
+</div>
 <br>
 <br>
 </body>
@@ -120,19 +121,20 @@
     <div class="mt-2">
       LaMontagne, P. J., Benzinger, T. L., Morris, J. C., Keefe, S., Hornbeck, R., Xiong, C., ... & Raichle, M. E.
       (2019).
-      OASIS-3: longitudinal neuroimaging, clinical, and cognitive dataset for normal aging and Alzheimer disease.
+      OASIS-3: Longitudinal neuroimaging, clinical, and cognitive dataset for normal aging and Alzheimer disease.
       medRxiv.
-      <a href="https://www.medrxiv.org/content/10.1101/2019.12.13.19014902v1">Link</a>
+      <a href="https://www.medrxiv.org/content/10.1101/2019.12.13.19014902v1">📄 Link</a>
       <br>
       <br>
       <div class="mt-2">
         Marcus, D. S., Fotenos, A. F., Csernansky, J. G., Morris, J. C., & Buckner, R. L. (2010). Open access series of
-        imaging studies: longitudinal MRI data in nondemented and demented older adults. Journal of Cognitive
+        imaging studies: Longitudinal MRI data in nondemented and demented older adults. Journal of Cognitive
         Neuroscience,
-        22(12), 2677-2684. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2895005/">Link</a>
+        22(12), 2677-2684. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2895005/">📄 Link</a>
       </div>
+<br>
+</br>
+<br>
+</br>
 </body>
-    </div>
-    <div>
-    </div>
 </html>
