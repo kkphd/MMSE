@@ -31,7 +31,7 @@ Cognitive impairment often occurs in the context of neurodegenerative disease an
 * AWS
 
 ## Project Description
-The current project was inspired by problems I encountered during my professional career, including challenges related to predicting cognitive dysfunction and neurologic disease. Other individuals completed [similar projects on kaggle](https://www.kaggle.com/jboysen/mri-and-alzheimers). 
+The current project was inspired by problems I encountered during my professional career, including challenges related to predicting cognitive dysfunction and neurologic disease. Other individuals completed [similar projects on kaggle](https://www.kaggle.com/jboysen/mri-and-alzheimers).
 
 The original dataset can be found on the [Open Access Series of Imaging Studies (OASIS) website.](http://www.oasis-brains.org/) The OASIS initiative was aimed toward providing extensive neuroimaging data to the public to promote scientific insights in clinical neuroscience.
 
@@ -40,7 +40,7 @@ The original dataset can be found on the [Open Access Series of Imaging Studies 
 1. 📄 To review the executive summary, method, results, and discussion sections of my project, visit the [Jupyter Notebook here](https://github.com/kkphd/MMSE/blob/master/Predicting-Cognitive-Impairment-KK-2020.ipynb).
 
 2. 💻 This [prediction calculator](http://predictadkkphd-env.eba-2z3rehiz.us-east-1.elasticbeanstalk.com/) offers a binary prediction of cognitive impairment based on user input data.
-***Note: This web application serves as a minimal viable product (MVP) to demonstrate the utility of applying machine learning algorithms to health data. Information from this application is NOT VALIDATED and SHOULD NOT be used in a clinical capacity. I do not assume any liability for the consequences of using this application.***
+***Note: This web application serves as a minimum viable product (MVP) to demonstrate the utility of applying machine learning algorithms to health data. Information from this application is NOT VALIDATED and SHOULD NOT be used in a clinical capacity. I do not assume any liability for the consequences of using this application.***
 
 ## License
 Usage is provided under the [MIT license](https://en.wikipedia.org/wiki/MIT_License). See the LICENSE.md file for details.
