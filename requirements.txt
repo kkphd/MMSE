@@ -36,7 +36,7 @@ pandas==1.0.3
 parso==0.7.0
 patsy==0.5.1
 pickleshare==0.7.5
-Pillow==7.1.2
+Pillow==9.0.0
 plotly==4.7.1
 pluggy==0.13.1
 prompt-toolkit==3.0.5
